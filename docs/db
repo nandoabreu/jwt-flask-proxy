@@ -1,0 +1,33 @@
+Help on module proxy.db in proxy:
+
+NAME
+    proxy.db - SQLite3 database creation and structure
+
+DESCRIPTION
+    This script runs when requested by proxy.
+    If this module is called, it will create a new db if none exists.
+    To configure SQLite3 file location, use config.py.
+    
+    For instructions, see: https://github.com/nandoabreu/jwt-flask-proxy
+
+FUNCTIONS
+    connect()
+        Create database connection with file set in config.py
+        
+        The function requests validation of the sqlite_file
+        and creates path, database and tables if not exist.
+    
+    requests(conn, action='process') -> int
+        Return number of requests
+        If a username is informed, filter the response
+        
+        Argument:
+            action (str): As in 'process' or 'respond'
+        
+        Return:
+            int: number of requests
+
+FILE
+    proxy/db.py
+
+

@@ -1,0 +1,22 @@
+Help on module proxy.__main__ in proxy:
+
+NAME
+    proxy.__main__
+
+FUNCTIONS
+    auth()
+        Create JWT and upstream
+        
+        Argument:
+            user (str): username (as an e-mail)
+    
+    index()
+        Default home page
+    
+    status()
+        Proxy status
+
+FILE
+    proxy/__main__.py
+
+
