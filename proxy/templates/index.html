@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script>
+        function generate() {
+            if ($('#user').val() == '') return false;
+            var data = { user: $('#user').val() };
+            $.ajax({ method: "POST", url: "auth", dataType: "json", 
+                     contentType: "application/json; charset=utf-8", 
+                     data: JSON.stringify(data) }).done(function(j){$('#token').val(j.token);});
+        }
+        function validate() {
+            if ($('#token').val() == '') return false;
+            url = 'https://jwt.io/#debugger-io?token=' + $('#token').val();
+            window.open(url);
+            return false;
+        }
+    </script>
+
+    <h3 style='color: blue;'>JWT Generator</h3>
+
+    <p>
+        Username:
+        <br /><input type='email' id='user' placeholder='e-mail' spellcheck='false' autocapitalize='off' />
+        <br /><input type='button' id='generate' value='generate' onclick='generate(); return false;' />
+    </p>
+
+    <p>
+        Token:
+        <br /><textarea id='token' rows='10' cols='7'></textarea>
+        <br /><input type='button' id='validate' value='decode in jwt.io' onclick='return validate();' />
+    </p>
+
+{% include 'footer.html' %}
+

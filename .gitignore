@@ -16,7 +16,7 @@ INTERNAL
 *.old
 *[*]ori/
 *.ori
-#config.py
+config.py
 config.json
 
 # Editors

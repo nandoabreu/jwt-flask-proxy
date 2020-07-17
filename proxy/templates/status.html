@@ -1,0 +1,17 @@
+{% include 'header.html' %}
+
+    <h3 style='color: blue;'>Proxy Status</h3>
+
+    <p>
+        Hello there,
+        <br />this proxy is up since 
+        <br />{{uptime.strftime('%F %T')}} UTC.
+    </p>
+
+    <p>
+        Until {{now.strftime('%A, %H:%M')}}, 
+        <br />we processed {{processed}} request{% if processed>1 %}s{% endif %}!
+    </p>
+
+{% include 'footer.html' %}
+

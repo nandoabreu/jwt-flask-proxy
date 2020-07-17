@@ -1,0 +1,37 @@
+body {
+    background-color: #f1f1f1;
+    font-family: Calibri, Candara, Arial, sans-serif;
+    font-size: 13px;
+    font-size: 62.5%;
+}
+
+#container {
+    position: absolute;
+    width: 290px;
+    top: 100px;
+    left: 50%;
+    margin-left: -145px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+input, textarea {
+    width: 200px;
+    padding: 0.1rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#generate {
+    width: 100px;
+    margin-top: 3px;
+}
+
+#token {
+    width: 100%;
+    text-align: left;
+}
+
+a {
+    color: green;
+}
