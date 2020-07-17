@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 '''
 Project's configuration file
-*** This file must be renamed to config.py***
 
 This file holds necessary variables to this project.
 
