@@ -1,11 +1,4 @@
 #! /usr/bin/env python3
-'''
-Python HTTP Proxy
-
-Usage:
-    $ python3 -m proxy
-
-'''
 
 from flask import Flask
 from flask import request
@@ -20,16 +13,16 @@ from proxy.Token import Token
 from proxy import db
 
 
-app = Flask(__name__)
-app.debug = False
+_app = Flask(__name__)
+_app.debug = False
 
-@app.route('/auth', methods=['POST'])
+@_app.route('/auth', methods=['POST'])
 def auth():
     '''
-        Create JWT and upstream
+    Create JWT and upstream
 
-        Argument:
-            user (str): username (as an e-mail)
+    Argument:
+        user (str): username (as an e-mail)
     '''
     conn = db.connect()
     count = db._store(conn)
@@ -54,12 +47,12 @@ def auth():
     logging.info(f'Respond Token for {user!r}')
     return jsonify({'token': token.jwt})
 
-@app.route('/')
+@_app.route('/')
 def index():
     '''Default home page'''
     return rt('index.html', uptime=uptime)
 
-@app.route('/status')
+@_app.route('/status')
 def status():
     '''Proxy status'''
     conn = db.connect()
@@ -73,5 +66,5 @@ def _bad_request():
 
 if __name__ == '__main__':
     uptime = datetime.datetime.utcnow()
-    app.run(host=cfg.http_host, port=cfg.http_port)
+    _app.run(host=cfg.http_host, port=cfg.http_port)
 
