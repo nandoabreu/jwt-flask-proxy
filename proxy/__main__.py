@@ -46,7 +46,7 @@ def auth():
 
     upstream = { 'Authorization': token.jwt }
     res = requests.post(cfg.endpoint_url, headers=upstream)
-    with open(path.join(cfg.log_path, cfg.log_response), 'w+') as f:
+    with open(path.join(cfg.log_path, cfg.log_response), 'a') as f:
         f.write(f'status: {res.status_code}\n')
         f.write(f'headers: {res.headers}\n')
         f.write(f'data: {res.text}\n')
@@ -73,5 +73,5 @@ def _bad_request():
 
 if __name__ == '__main__':
     uptime = datetime.datetime.utcnow()
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host=cfg.http_host, port=cfg.http_port)
 
