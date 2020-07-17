@@ -1,7 +1,9 @@
 **/__INTERNAL__
 **/*INTERNAL*
 **/*bak
-**/*log
+**/*log*
+**/*data
+#**/config.py
 **/*ok
 **/*old
 **/*ori
