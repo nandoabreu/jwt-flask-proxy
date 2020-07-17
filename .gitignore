@@ -108,7 +108,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-!docs/*.log
+!docs/logs/*.log
 
 # PyBuilder
 target/
