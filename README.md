@@ -1,19 +1,20 @@
 # jwt-flask-proxy
 
-This project enables a JWT access key generator in an HTTP proxy writen in Python 3.6 with Flask framework.
+This project enables a JWT access key generator in an HTTP proxy written in Python 3.6 with Flask framework.
 
 &nbsp;  
 &nbsp;  
 ## README Map
 
 - If you prefer to run the proxy manually, [install the requirements](README.md#set-up-and-install) and [run the proxy server](README.md#running-the-proxy-server).
-- To play with the JWT Generator class, [install](README.md#set-up-and-install) and see the [class that generates Tokens](README.md#the-class-to-generate-jwt).
+- To use the JWT Generator class, [install](README.md#set-up-and-install) and see the [class that generates Tokens](README.md#the-class-to-generate-jwt).
 - If you prefer Docker, go to [Containerise with Dockerfile](README.md#containerise-with-the-dockerfile).
-- To run Docker compose, jump to [Docker compose](README.md#run-the-docker-compose) instructions.
+- To run Docker compose, skip to [Docker compose](README.md#run-the-docker-compose) instructions.
 - About logs, please move to the corresponding topic, [Logs](README.md#logs).
 - Instructions on advanced/technical documentation, go to [Documentation](README.md#documentation).
 - For running tests, please see the corresponding chapter, [Automatic tests](README.md#automatic-tests).
-- Or click to jump to the [To do](README.md#to-do) list.
+- Or click to skip to the [To do](README.md#to-do) list.
+
 
 ## Set-up and install
 _I recommend using [virtualenv](https://realpython.com/python-virtual-environments-a-primer/) to run py manually._
@@ -37,7 +38,7 @@ Note: A generic SECRET\_KEY is in the config file, so **edit config.py with your
 -->
 
 ## The class to generate JWT
-Here we play a little with the python console and the created class to [generate JWT](proxy/Token.py), so lets get to the prompt:
+With the python console and the [class that generates JWT](proxy/Token.py), we can get a Token:
 
     $ python3
     >>> from proxy.Token import Token
@@ -76,21 +77,20 @@ To stop container and clean image, use:
 ## Run the Docker compose
 _I assume that you have docker compose installed. If not, please see [Install Docker Compose](https://docs.docker.com/compose/install/)._
 
-If you prefer running compose, please execute:
+There are Makefile rules to simplify this option. See the list of commands:
 
-    $ docker-compose up --abort-on-container-exit
+- `$ make ` to build and run (up) the application.
+    - or run `$ make build; make run ` _(note: run already calls build)_.
+- `$ make stop ` and ` make start ` to start the container.
+- `$ make rm ` to remove compose service, container, image.
 
-Now, we should be able to browse http://localhost:5000/  
-Please remember to hit Ctrl+c to stop the web server when done.
+The default HTTP proxy PORT is 5000 and set in [.env](.env). The port can be changed during runtime:
 
-To clean files, use:
-
-    $ docker container rm $(docker container ls -a | grep _proxy | cut -d' ' -f1)
-    $ docker image rm $(docker image ls -a | grep _proxy | sed 's/ \+/ /'g | cut -d' ' -f3)
+    $ HTTP_PORT=8080 make default
 
 
 ## Logs
-By default, logs are recorded in the 'logs' directory in the the project's root. However,
+By default, logs are recorded in the 'logs' directory in the project's root. However,
 if you [containerise](README.md#containerise-with-the-dockerfile) the proxy, 
 logs will be inside the container. And if you [docker compose](README.md#run-the-docker-compose), 
 the container will use the hosts' dirs as in [Running the proxy](README.md#running-the-proxy-server).
