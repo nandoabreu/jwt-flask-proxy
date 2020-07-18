@@ -15,6 +15,7 @@ from proxy import db
 
 _app = Flask(__name__)
 _app.debug = False
+uptime = datetime.datetime.utcnow()
 
 @_app.route('/auth', methods=['POST'])
 def auth():
@@ -64,8 +65,6 @@ def _bad_request():
     return make_response(jsonify({'error': 'Bad Request'}), 400)
 
 def main():
-    global uptime
-    uptime = datetime.datetime.utcnow()
     _app.run(host=cfg.http_host, port=cfg.http_port)
 
 
