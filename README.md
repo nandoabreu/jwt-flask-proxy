@@ -6,14 +6,14 @@ This project enables a JWT access key generator in an HTTP proxy written in Pyth
 &nbsp;  
 ## README Map
 
-- If you prefer to run the proxy manually, [install the requirements](README.md#set-up-and-install) and [run the proxy server](README.md#running-the-proxy-server).
-- To use the JWT Generator class, [install](README.md#set-up-and-install) and see the [class that generates Tokens](README.md#the-class-to-generate-jwt).
-- If you prefer Docker, go to [Containerise with Dockerfile](README.md#containerise-with-the-dockerfile).
-- To run Docker compose, skip to [Docker compose](README.md#run-the-docker-compose) instructions.
-- About logs, please move to the corresponding topic, [Logs](README.md#logs).
-- Instructions on advanced/technical documentation, go to [Documentation](README.md#documentation).
-- For running tests, please see the corresponding chapter, [Automatic tests](README.md#automatic-tests).
-- Or click to skip to the [To do](README.md#to-do) list.
+- If you prefer to run the proxy manually, [install the requirements](#set-up-and-install) and [run the proxy server](#running-the-proxy-server).
+- For automatic tests, [install requirements](#set-up-and-install), [start the proxy server](#running-the-proxy-server) and skip to [Automatic tests](#automatic-tests).
+- To use the JWT Generator class, [install](#set-up-and-install) and see the [class that generates Tokens](#the-class-to-generate-jwt).
+- If you prefer Docker, go to [Containerise with Dockerfile](#containerise-with-the-dockerfile).
+- To run Docker compose, skip to [Docker compose](#run-the-docker-compose) instructions.
+- About logs, please move to the corresponding topic, [Logs](#logs).
+- Instructions on advanced/technical documentation, go to [Documentation](#documentation).
+- Or click to skip to the [To do](#to-do) list.
 
 
 ## Set-up and install
@@ -37,15 +37,6 @@ Rename/copy the configuration template file [proxy/config.py.tpl](proxy/config.p
 Note: A generic SECRET\_KEY is in the config file, so **edit config.py with your prefered secret key**.
 -->
 
-## The class to generate JWT
-With the python console and the [class that generates JWT](proxy/Token.py), we can get a Token:
-
-    $ python3
-    >>> from proxy.Token import Token
-    >>> user = 'fernando@github.com'
-    >>> t = Token(user)
-    >>> t.jwt
-
 
 ## Running the proxy server
 By default, the proxy runs on port 5000. This can be changed in the [config file](proxy/config.py).
@@ -56,12 +47,35 @@ At this point, we should be able to browse: http://localhost:5000/
 Please remember to hit Ctrl+c to stop the web server when done.
 
 
+## Automatic tests
+**To run automatic tests, you must [install the requirements](#set-up-and-install) and [start the proxy server](#running-the-proxy-server) first.**
+
+The basic test for this project is in Bash script using curl and it tests proxy running manually, containerised or composed:
+
+    $ bash tests/curl-post.bash
+
+
+Other tests can run using unittest/PyUnit. With the proxy running, please run:
+
+    $ python3 -m unittest tests/test_*
+
+
+## The class to generate JWT
+With the python console and the [class that generates JWT](proxy/Token.py), we can get a Token:
+
+    $ python3
+    >>> from proxy.Token import Token
+    >>> user = 'fernando@github.com'
+    >>> t = Token(user)
+    >>> t.jwt
+
+
 ## Containerise with the Dockerfile
 _I assume that you have docker engine running. If not, please see [Get Docker](https://docs.docker.com/get-docker/)._
 
 If you rather run the proxy in a single container, run:
 
-    $ docker run --rm -d -p 5000:5000 --name proxy $(docker build -f Dockerfile -t proxy -q .)
+    $ docker run --rm -d -p 5000:5000 --name proxy $(docker build -f Dockerfile -t proxy . -q)
 
 To know IP and Port to the containerised app:
 
@@ -91,9 +105,9 @@ The default HTTP proxy PORT is 5000 and set in [.env](.env). The port can be cha
 
 ## Logs
 By default, logs are recorded in the 'logs' directory in the project's root. However,
-if you [containerise](README.md#containerise-with-the-dockerfile) the proxy, 
-logs will be inside the container. And if you [docker compose](README.md#run-the-docker-compose), 
-the container will use the hosts' dirs as in [Running the proxy](README.md#running-the-proxy-server).
+if you [containerise](#containerise-with-the-dockerfile) the proxy, 
+logs will be inside the container. And if you [docker compose](#run-the-docker-compose), 
+the container will use the hosts' dirs as in [Running the proxy](#running-the-proxy-server).
 
 Please see [docs/logs](docs/logs) if you wish to access samples of the generated logs.
 
@@ -112,21 +126,9 @@ Or try from command line:
 All documentation can be found in [docs](docs).
 
 
-## Automatic tests
-
-The basic test for this project is in Bash script using curl and it tests proxy running manually, containerised or composed:
-
-    $ bash tests/curl-post.bash
-
-
-Other tests can run using unittest/PyUnit. With the proxy running, please run:
-
-    $ python3 -m unittest tests/test_*
-
-
 ## To do
 
+* Document separation of server from proxy.\__main__
 * Configure rotation of log files.
 * Review docstring in db.py.
-* Review this README.
 
