@@ -8,7 +8,7 @@ This project enables a JWT access key generator in an HTTP proxy written in Pyth
 
 - If you prefer to run the proxy manually, [install the requirements](#set-up-and-install) and [run the proxy server](#running-the-proxy-server).
 - For automatic tests, [install requirements](#set-up-and-install) and skip to [Automatic tests](#automatic-tests).
-- To use the JWT Generator class, [install](#set-up-and-install) and see the [class that generates Tokens](#the-class-to-generate-jwt).
+- To use the JWT Generator class, [install requirements](#set-up-and-install) and skip to [class that generates Tokens](#the-class-to-generate-jwt).
 - If you prefer Docker, go to [Containerise with Dockerfile](#containerise-with-the-dockerfile).
 - To run Docker compose, skip to [Docker compose](#run-the-docker-compose) instructions.
 - About logs, please move to the corresponding topic, [Logs](#logs).
