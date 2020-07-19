@@ -31,6 +31,11 @@ rm:
 	docker-compose down --remove-orphans --rmi all
 	@echo "Done."
 
+test:
+	@echo "Starting unittests..."
+	python3 -m unittest tests/test_*
+	@echo "Done."
+
 up: run
 default: run
 
