@@ -32,8 +32,10 @@ rm:
 	@echo "Done."
 
 test:
-	@echo "Starting unittests..."
-	python3 -m pip install -r requirements.txt
+	@echo "\n### Starting curl tests... ##########"
+	-bash tests/curl-post.bash
+	@echo "\n### Starting unittests... ###########"
+	python3 -m pip install -r requirements.txt 1>/dev/null
 	python3 -m unittest tests/test_*
 	@echo "Done."
 
