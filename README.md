@@ -48,7 +48,8 @@ Please remember to hit Ctrl+c to stop the web server when done.
 
 
 ## Automatic tests
-Python tests are available using unittest/PyUnit via Makefile or manually.
+Python tests are available using unittest/PyUnit via Makefile or manually.  
+_Note: depending on how the proxy was started, may require ` sudo chmod o+w logs/* ` (not if in production)._
 
 - Run ` make test ` to install requirements and run the tests.
 - Or [install requirements](#set-up-and-install) and manually run ` python3 -m unittest tests/test_* `.
@@ -96,9 +97,9 @@ There are Makefile rules to simplify this option. See the list of commands:
 - ` $ make stop ` and ` make start ` to start the container.
 - ` $ make rm ` to remove compose service, container, image.
 
-The default HTTP proxy PORT is 5000 and set in [.env](.env). The port can be changed during runtime:
+The default HTTP proxy PORT is 5000 and set in [.env](.env). The port can be changed:
 
-    $ HTTP_PORT=8080 make default
+    $ HTTP_PORT=8080 make up
 
 
 ## Logs
