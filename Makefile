@@ -33,6 +33,7 @@ rm:
 
 test:
 	@echo "Starting unittests..."
+	python3 -m pip install -r requirements.txt
 	python3 -m unittest tests/test_*
 	@echo "Done."
 

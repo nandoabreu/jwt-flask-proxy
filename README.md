@@ -48,13 +48,14 @@ Please remember to hit Ctrl+c to stop the web server when done.
 
 
 ## Automatic tests
-The basic test for this project is in Bash script using curl and it tests proxy [running manually](#running-the-proxy-server), [containerised](#containerise-with-the-dockerfile) or [composed](#run-the-docker-compose):
+Python tests are available using unittest/PyUnit via Makefile or manually.
+
+- Run ` make test ` to install requirements and run the tests.
+- Or [install requirements](#set-up-and-install) and manually run ` python3 -m unittest tests/test_* `.
+
+An extra basic test is available in Bash script using curl and it tests proxy [running manually](#running-the-proxy-server), [containerised](#containerise-with-the-dockerfile) or [composed](#run-the-docker-compose):
 
     $ bash tests/curl-post.bash
-
-**Or** you can run tests using unittest/PyUnit **after** you [install requirements](#set-up-and-install):
-
-    $ python3 -m unittest tests/test_*
 
 
 ## The class to generate JWT
@@ -90,10 +91,10 @@ _I assume that you have docker compose installed. If not, please see [Install Do
 
 There are Makefile rules to simplify this option. See the list of commands:
 
-- `$ make ` to build and run (up) the application.
+- ` $ make ` to build and run (up) the application.
     - or run `$ make build; make run ` _(note: run already calls build)_.
-- `$ make stop ` and ` make start ` to start the container.
-- `$ make rm ` to remove compose service, container, image.
+- ` $ make stop ` and ` make start ` to start the container.
+- ` $ make rm ` to remove compose service, container, image.
 
 The default HTTP proxy PORT is 5000 and set in [.env](.env). The port can be changed during runtime:
 
