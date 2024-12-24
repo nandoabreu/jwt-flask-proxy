@@ -1,6 +1,6 @@
 # jwt-flask-proxy
 
-This project enables a JWT access key generator in an HTTP proxy written in Python 3.6 with Flask framework.
+This project enables a JWT access key generator in an HTTP proxy written in Python 3.11 with Flask framework.
 
 &nbsp;  
 &nbsp;  
@@ -69,22 +69,22 @@ With the python console and the [class that generates JWT](proxy/Token.py), we c
     >>> t.jwt
 
 
-## Containerise with the Dockerfile
-_I assume that you have docker engine running. If not, please see [Get Docker](https://docs.docker.com/get-docker/)._
+## Containerise
+
+_I assume that you have docker engine or Podman running._
+
+    $ runner=$(which podman docker | head -1)
 
 If you rather run the proxy in a single container, run:
 
-    $ docker run --rm -d -p 5000:5000 --name proxy $(docker build -f Dockerfile -t proxy . -q)
-
-To know IP and Port to the containerised app:
-
-    $ docker inspect proxy | grep -e IPAddr.*[0-9] -e HostPort | sed 's/[^0-9\.]//g' | sort -u
+    $ $runner build -f Dockerfile -t proxy . -q
+    $ $runner run --rm -d --name proxy -p 5000:5000 proxy
 
 After this, we should be able to browse: http://\<container IP\>:5000/  
 
 To stop container and clean image, use:
 
-    $ docker stop proxy && docker image rm proxy
+    $ $runner stop proxy && $runner image rm proxy
 
 
 ## Run the Docker compose

@@ -34,5 +34,5 @@ class Token:
 
         self.jwt = jwt.encode(pldata,
                               cfg.SECRET_KEY, algorithm=cfg.ALGO,
-                              headers=headers).decode('utf8')
+                              headers=headers)
 

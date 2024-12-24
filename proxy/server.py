@@ -14,7 +14,7 @@ from proxy import db
 
 
 _app = Flask(__name__)
-_app.debug = False
+_app.debug = True
 uptime = datetime.datetime.utcnow()
 
 @_app.route('/auth', methods=['POST'])
